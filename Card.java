@@ -5,9 +5,7 @@ public class Card {
     private Suit suit;
 
     /**
-     *
-     * @param suit
-     * @param rank
+     * Constructs a Card object given a rank and suit
      */
     public Card(Rank rank, Suit suit) {
         this.rank = rank;
@@ -15,33 +13,33 @@ public class Card {
     }
 
     /**
-     *
-     * @return
+     * Gets rank of Card object
+     * @return rank of Card object
      */
     public Rank getRank() {
         return rank;
     }
 
     /**
-     *
-     * @return
+     * Gets suit of Card object
+     * @return suit of Card object
      */
     public Suit getSuit() {
         return suit;
     }
 
     /**
-     *
-     * @return
+     * Creates String representation of a Card object
+     * @return String representation of Card ({RANK}, {SUIT})
      */
     public String toString() {
         return "(" + rank.toString() + ", " + suit.toString() + ")";
     }
 
     /**
-     *
-     * @param other
-     * @return
+     * Checks equality of this Card object with other Card object
+     * @param other - other card being compared for equality
+     * @return true if rank and suit of both Card objects are the same
      */
     public boolean equals(Object other) {
         Card otherCard = (Card) other;
@@ -50,7 +48,7 @@ public class Card {
 
     /**
      * Compares two card objects
-     * @param other is the second card being compared to this.Card
+     * @param other - second card being compared to this.Card
      * @return will return negative numbers if this.Card comes before other
      *         will return a positive number if this.Card comes after other
      *         will return 0 if the cards are identical
@@ -63,6 +61,10 @@ public class Card {
         }
     }
 
+    /**
+     * Generate and return a random Card object
+     * @return a Card object with a random rank and suit
+     */
     public static Card randomCard() {
         Random random = new Random();
         int randomRankIndex = random.nextInt(Rank.values().length);

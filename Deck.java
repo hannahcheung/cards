@@ -6,15 +6,16 @@ public class Deck {
     private final List<Card> cards;
 
     /**
-     *
+     * Constructs an empty Deck
      */
     public Deck() {
         this(0);
     }
 
     /**
-     *
-     * @param numCards
+     * Constructs a Deck of Cards with a given number
+     * @param numCards - given number of cards in new Deck
+     * @precondition 0 <= numCards <= 52
      */
     public Deck(int numCards) {
         cards = new ArrayList<>();
@@ -30,20 +31,24 @@ public class Deck {
     }
 
     /**
-     *
-     * @param card
+     * Adds a card to the Deck
+     * @param card - card to be added to Deck
      */
     public void addCard(Card card) {
         cards.add(card);
     }
 
+    /**
+     * Gets number of cards in Deck
+     * @return number of cards in Deck
+     */
     public int size() {
         return cards.size();
     }
 
     /**
-     *
-     * @return
+     * Creates String representation of a Deck
+     * @return [{CARD1}, {CARD2}, {CARD3}...]
      */
     public String toString() {
         String str = "[";
@@ -59,7 +64,7 @@ public class Deck {
     }
 
     /**
-     * Perfoms selection sort on the cards list.
+     * Performs selection sort on the cards list.
      */
     public void sort() {
         for (int i = 0; i < cards.size(); i++) {
