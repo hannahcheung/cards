@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Deck {
     private final List<Card> cards;
@@ -19,7 +18,6 @@ public class Deck {
      */
     public Deck(int numCards) {
         cards = new ArrayList<>();
-        Random random = new Random();
 
         for (int i = 0; i < numCards; i++) {
             Card card = Card.randomCard();
@@ -64,7 +62,33 @@ public class Deck {
     }
 
     /**
-     * Performs selection sort on the cards list.
+     * Searches for a given card in the Deck
+     * @param target - Card to look for in Deck
+     * @precondition Deck is sorted in ascending order
+     * @return index of target Card if Card is found, -1 if not found
+     */
+    public int search(Card target) {
+        return search(target, 0, cards.size() - 1);
+    }
+
+    private int search(Card target, int low, int high) {
+        while (low < high) {
+            // TODO: Avoid overflow?
+            int mid = (low + high) / 2;
+            Card curr = cards.get(mid);
+            if (target.equals(curr)) {
+                return mid;
+            } else if (target.compareTo(curr) > 0) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Performs selection sort on the cards list
      */
     public void sort() {
         for (int i = 0; i < cards.size(); i++) {
@@ -79,6 +103,19 @@ public class Deck {
                 }
             }
             swap(i, minIndex);
+        }
+    }
+
+    /**
+     * Performs insertion sort on the cards list
+     */
+    public void insertionSort() {
+        for (int i = 0; i < cards.size(); i++) {
+            int j = i;
+            while (j > 0 && cards.get(j - 1).compareTo(cards.get(j)) > 0) {
+                swap(j, j -1);
+                j = j - 1;
+            }
         }
     }
 

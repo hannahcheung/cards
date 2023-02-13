@@ -1,5 +1,5 @@
 public class Game {
-    public static final int FULL_DECK = 52;
+    public static final int FULL_DECK = 56;
 
     public static void main(String[] args) {
         Card card = new Card(Rank.ACE, Suit.CLUBS);
@@ -10,8 +10,8 @@ public class Game {
         System.out.println(deck);
 
         Deck allCards = new Deck(FULL_DECK);
-        // System.out.println(allCards);
-        allCards.sort();
+        System.out.println(allCards);
+        allCards.insertionSort();
         System.out.println(allCards);
         System.out.println(allCards.size());
     }

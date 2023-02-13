@@ -70,7 +70,7 @@ public class Card {
         int randomRankIndex = random.nextInt(Rank.values().length);
         int randomSuitIndex = random.nextInt(Suit.values().length);
         Rank randomRank = Rank.values()[randomRankIndex];
-        Suit randomSuit = Suit.values() [randomSuitIndex];
+        Suit randomSuit = Suit.values()[randomSuitIndex];
 
         return new Card(randomRank, randomSuit);
     }
