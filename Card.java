@@ -1,23 +1,15 @@
 public class Card {
-    private Suit suit;
     private Rank rank;
+    private Suit suit;
 
     /**
      *
      * @param suit
      * @param rank
      */
-    public Card(Suit suit, Rank rank) {
-        this.suit = suit;
+    public Card(Rank rank, Suit suit) {
         this.rank = rank;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public Suit getSuit() {
-        return suit;
+        this.suit = suit;
     }
 
     /**
@@ -26,6 +18,14 @@ public class Card {
      */
     public Rank getRank() {
         return rank;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Suit getSuit() {
+        return suit;
     }
 
     /**
