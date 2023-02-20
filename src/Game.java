@@ -1,3 +1,8 @@
+package src;
+
+import src.Card;
+import src.Deck;
+
 public class Game {
     public static final int FULL_DECK = 56;
 

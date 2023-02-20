@@ -1,8 +1,10 @@
+package src;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Deck {
-    private final List<Card> cards;
+    private List<Card> cards;
 
     /**
      * Constructs an empty Deck
@@ -29,11 +31,28 @@ public class Deck {
     }
 
     /**
+     * Gets list of cards in Deck
+     * @return List of Cards in Deck
+     */
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    /**
      * Adds a card to the Deck
      * @param card - card to be added to Deck
      */
     public void addCard(Card card) {
         cards.add(card);
+    }
+
+    /**
+     * Adds a list of cards to the Deck
+     * @param cardsList list of cards to be added to Deck
+     * @precondition cardsList contains at least one element
+     */
+    public void addCards(List<Card> cardsList) {
+        cards.addAll(cardsList);
     }
 
     /**

@@ -1,3 +1,5 @@
+package src;
+
 import java.util.Random;
 
 public class Card {
@@ -37,7 +39,7 @@ public class Card {
     }
 
     /**
-     * Checks equality of this Card object with other Card object
+     * Checks equality of this Card object with other src.Card object
      * @param other - other card being compared for equality
      * @return true if rank and suit of both Card objects are the same
      */
