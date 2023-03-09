@@ -91,9 +91,9 @@ public class Deck {
     }
 
     private int search(Card target, int low, int high) {
-        while (low < high) {
-            // TODO: Avoid overflow?
-            int mid = (low + high) / 2;
+        while (low <= high) {
+            // Avoids overflow
+            int mid = low + ((high - low) / 2);
             Card curr = cards.get(mid);
             if (target.equals(curr)) {
                 return mid;

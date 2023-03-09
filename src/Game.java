@@ -10,6 +10,7 @@ public class Game {
         Card card = new Card(Rank.ACE, Suit.CLUBS);
         System.out.println(card);
 
+        // Create your deck of cards.
         Deck deck = new Deck();
         deck.addCard(card);
         System.out.println(deck);

@@ -1,14 +1,27 @@
 package test;
 
+import org.junit.Before;
 import org.junit.Test;
 import src.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SortTest {
+
+    private Random random;
+
+    @Before
+    public void init() {
+        random = new Random();
+    }
+
+    /**
+     * Asserts that sorting an empty list results in an empty list.
+     */
     @Test
     public void emptyDeckSortTest() {
         Deck deck = new Deck();
@@ -17,26 +30,37 @@ public class SortTest {
         assertEquals(deck.getCards(), new ArrayList<>());
     }
 
+    /**
+     * Asserts that sorting a list with a single Card results in the
+     * same list.
+     */
     @Test
     public void oneCardDeckSortTest() {
         Deck deck = new Deck();
-        deck.addCard(new Card(Rank.JACK, Suit.DIAMONDS));
+        Card card = Card.randomCard();
+        deck.addCard(card);
 
         Deck sortedDeck = new Deck();
-        sortedDeck.addCard(new Card(Rank.JACK, Suit.DIAMONDS));
+        sortedDeck.addCard(card);
 
         assertEquals(deck.getCards(), sortedDeck.getCards());
     }
 
+    /**
+     *
+     */
     @Test
     public void sameRankSortTest() {
         Deck deck = new Deck();
         Deck sortedDeck = new Deck();
         List<Card> cards = new ArrayList<>();
+        Rank randomRank = Rank.values()[random.nextInt(Rank.values().length)];
+
         for (Suit suit : Suit.values()) {
-            cards.add(new Card(Rank.FOUR, suit));
-            sortedDeck.addCard(new Card(Rank.FOUR, suit));
+            cards.add(new Card(randomRank, suit));
+            sortedDeck.addCard(new Card(randomRank, suit));
         }
+
         Collections.shuffle(cards);
         deck.addCards(cards);
         deck.sort();
@@ -44,6 +68,9 @@ public class SortTest {
         assertEquals(deck.getCards(), sortedDeck.getCards());
     }
 
+    /**
+     *
+     */
     @Test
     public void sameSuitSortTest() {
         Deck deck = new Deck();
@@ -60,6 +87,9 @@ public class SortTest {
         assertEquals(deck.getCards(), sortedDeck.getCards());
     }
 
+    /**
+     *
+     */
     @Test
     public void fullDeckSortTest() {
         Deck deck = new Deck(56);

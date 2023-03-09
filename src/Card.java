@@ -39,7 +39,7 @@ public class Card {
     }
 
     /**
-     * Checks equality of this Card object with other src.Card object
+     * Checks equality of this Card object with other Card object
      * @param other - other card being compared for equality
      * @return true if rank and suit of both Card objects are the same
      */
