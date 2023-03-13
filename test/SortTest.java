@@ -20,7 +20,7 @@ public class SortTest {
     }
 
     /**
-     * Asserts that sorting an empty list results in an empty list.
+     * Asserts that sorting an empty Deck results in an empty Deck.
      */
     @Test
     public void emptyDeckSortTest() {
@@ -31,8 +31,8 @@ public class SortTest {
     }
 
     /**
-     * Asserts that sorting a list with a single Card results in the
-     * same list.
+     * Asserts that sorting a Deck with a single Card results in the
+     * same Deck.
      */
     @Test
     public void oneCardDeckSortTest() {
@@ -47,7 +47,8 @@ public class SortTest {
     }
 
     /**
-     *
+     * Asserts that sorting a Deck which contains Cards of all
+     * the same rank results in a Deck sorted by the suits.
      */
     @Test
     public void sameRankSortTest() {
@@ -69,7 +70,8 @@ public class SortTest {
     }
 
     /**
-     *
+     * Asserts that sorting a Deck which contains Cards of all
+     * the same suits results in a Deck sorted by the ranks.
      */
     @Test
     public void sameSuitSortTest() {
@@ -88,7 +90,7 @@ public class SortTest {
     }
 
     /**
-     *
+     * Asserts that sorting a full Deck
      */
     @Test
     public void fullDeckSortTest() {

@@ -86,11 +86,11 @@ public class Deck {
      * @precondition Deck is sorted in ascending order
      * @return index of target Card if Card is found, -1 if not found
      */
-    public int search(Card target) {
-        return search(target, 0, cards.size() - 1);
+    public int binarySearch(Card target) {
+        return binarySearch(target, 0, cards.size() - 1);
     }
 
-    private int search(Card target, int low, int high) {
+    private int binarySearch(Card target, int low, int high) {
         while (low <= high) {
             // Avoids overflow
             int mid = low + ((high - low) / 2);
@@ -107,9 +107,28 @@ public class Deck {
     }
 
     /**
-     * Performs selection sort on the cards list
+     * Performs linear search on cards in Deck.
+     * @param target - Card to look for in Deck
+     * @return index of target Card if Card is found, -1 if not found
      */
+    public int linearSearch(Card target) {
+        for (int i = 0; i < cards.size(); i++) {
+            Card card = cards.get(i);
+            if (target.equals(card)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public void sort() {
+        selectionSort();
+    }
+
+    /**
+     * Performs selection sort on the cards in the Deck
+     */
+    public void selectionSort() {
         for (int i = 0; i < cards.size(); i++) {
             // set minimum card to be the greatest value card initially
             int minIndex = i;
@@ -126,7 +145,7 @@ public class Deck {
     }
 
     /**
-     * Performs insertion sort on the cards list
+     * Performs insertion sort on the cards in the Deck
      */
     public void insertionSort() {
         for (int i = 0; i < cards.size(); i++) {
