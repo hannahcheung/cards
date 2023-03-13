@@ -167,4 +167,18 @@ public class Deck {
         cards.set(indexA, cards.get(indexB));
         cards.set(indexB, temp);
     }
+
+    /**
+     * Creates and returns a full sorted Deck.
+     * @return full sorted Deck
+     */
+    public static Deck fullSortedDeck() {
+        Deck fullDeck = new Deck();
+        for (Rank rank : Rank.values()) {
+            for (Suit suit : Suit.values()) {
+                fullDeck.addCard(new Card(rank, suit));
+            }
+        }
+        return fullDeck;
+    }
 }

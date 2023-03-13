@@ -1,7 +1,10 @@
 package test;
 
+import org.junit.Before;
 import org.junit.Test;
 import src.*;
+
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -9,6 +12,13 @@ import static org.junit.Assert.assertNotEquals;
 public class SearchTest {
 
     public static final int FULL_DECK = 56;
+    public static final int ARBITRARY_SIZE = 20;
+    private Random random;
+
+    @Before
+    public void init() {
+        random = new Random();
+    }
 
     /**
      * Assert that searching for any Card in an empty Deck returns -1.
@@ -64,14 +74,171 @@ public class SearchTest {
     @Test
     public void fullUnsortedDeckContainsSearchTest() {
         Deck fullDeck = new Deck(FULL_DECK);
-        System.out.println(fullDeck);
         Card card = Card.randomCard();
-        System.out.println(card);
 
         int index = fullDeck.linearSearch(card);
 
         assertNotEquals(-1, index);
         assertEquals(fullDeck.getCards().indexOf(card), index);
+    }
+
+    /**
+     * Assert that searching for a Card that appears at the beginning
+     * of a non-full unsorted Deck returns the correct position
+     * of the Card at index 0.
+     */
+    @Test
+    public void unsortedDeckContainsBeginningSearchTest() {
+        Deck deck = new Deck(ARBITRARY_SIZE);
+        Card card = deck.getCards().get(0);
+
+        int index = deck.linearSearch(card);
+
+        assertEquals(0, index);
+    }
+
+    /**
+     * Assert that searching for a Card that appears at the middle
+     * of a non-full unsorted Deck returns the correct position
+     * of the Card.
+     */
+    @Test
+    public void unsortedDeckContainsMiddleSearchTest() {
+        Deck deck = new Deck(ARBITRARY_SIZE);
+        Card card = deck.getCards().get(ARBITRARY_SIZE / 2);
+
+        int index = deck.linearSearch(card);
+
+        assertEquals(ARBITRARY_SIZE / 2, index);
+    }
+
+    /**
+     * Assert that searching for a Card that appears at the end
+     * of a non-full unsorted Deck returns the correct position
+     * of the Card.
+     */
+    @Test
+    public void unsortedDeckContainsEndSearchTest() {
+        Deck deck = new Deck(ARBITRARY_SIZE);
+        Card card = deck.getCards().get(ARBITRARY_SIZE - 1);
+
+        int index = deck.linearSearch(card);
+
+        assertEquals(ARBITRARY_SIZE - 1, index);
+    }
+
+    /**
+     * Assert that searching for a Card that does not appear in
+     * a non-full unsorted Deck returns -1.
+     */
+    @Test
+    public void unsortedDeckDoesNotContainSearchTest() {
+        Deck deck = new Deck(ARBITRARY_SIZE);
+        Card card = Card.randomCard();
+        while (deck.getCards().contains(card)) {
+            card = Card.randomCard();
+        }
+
+        int index = deck.linearSearch(card);
+        assertEquals(-1, index);
+    }
+
+    /**
+     * Assert that searching for a Card that appears at the beginning
+     * of a non-full sorted Deck returns the correct position
+     * of the Card at index 0.
+     */
+    @Test
+    public void sortedDeckContainsBeginningSearchTest() {
+        Deck fullDeck = Deck.fullSortedDeck();
+        List<Card> cards = fullDeck.getCards();
+
+        while (cards.size() > ARBITRARY_SIZE) {
+            int randomIndex = random.nextInt(cards.size());
+            cards.remove(randomIndex);
+        }
+
+        Deck searchDeck = new Deck();
+        searchDeck.addCards(cards);
+
+        Card card = searchDeck.getCards().get(0);
+        int index = searchDeck.linearSearch(card);
+
+        assertEquals(0, index);
+    }
+
+    /**
+     * Assert that searching for a Card that appears at the middle
+     * of a non-full sorted Deck returns the correct position
+     * of the Card.
+     */
+    @Test
+    public void sortedDeckContainsMiddleSearchTest() {
+        Deck fullDeck = Deck.fullSortedDeck();
+        List<Card> cards = fullDeck.getCards();
+
+        while (cards.size() > ARBITRARY_SIZE) {
+            int randomIndex = random.nextInt(cards.size());
+            cards.remove(randomIndex);
+        }
+
+        Deck searchDeck = new Deck();
+        searchDeck.addCards(cards);
+
+        Card card = searchDeck.getCards().get(ARBITRARY_SIZE / 2);
+        int index = searchDeck.linearSearch(card);
+
+        assertEquals(ARBITRARY_SIZE / 2, index);
+    }
+
+    /**
+     * Assert that searching for a Card that appears at the end
+     * of a non-full sorted Deck returns the correct position
+     * of the Card.
+     */
+    @Test
+    public void sortedDeckContainsEndSearchTest() {
+        Deck fullDeck = Deck.fullSortedDeck();
+        List<Card> cards = fullDeck.getCards();
+
+        while (cards.size() > ARBITRARY_SIZE) {
+            int randomIndex = random.nextInt(cards.size());
+            cards.remove(randomIndex);
+        }
+
+        Deck searchDeck = new Deck();
+        searchDeck.addCards(cards);
+
+        Card card = searchDeck.getCards().get(ARBITRARY_SIZE - 1);
+        int index = searchDeck.linearSearch(card);
+
+        assertEquals(ARBITRARY_SIZE - 1, index);
+    }
+    /**
+     * Assert that searching for a Card that does not appear in
+     * a non-full sorted Deck returns -1.
+     */
+    @Test
+    public void sortedDeckDoesNotContainSearchTest() {
+        Deck fullDeck = Deck.fullSortedDeck();
+        List<Card> cards = fullDeck.getCards();
+
+        while (cards.size() > ARBITRARY_SIZE) {
+            int randomIndex = random.nextInt(cards.size());
+            cards.remove(randomIndex);
+        }
+
+        Deck searchDeck = new Deck();
+        searchDeck.addCards(cards);
+
+        Card card = Card.randomCard();
+        while (searchDeck.getCards().contains(card)) {
+            card = Card.randomCard();
+        }
+
+        int index = searchDeck.linearSearch(card);
+
+        assertEquals(-1, index);
     }
 
     /**
@@ -81,13 +248,9 @@ public class SearchTest {
      */
     @Test
     public void fullSortedDeckContainsSearchTest() {
-        Deck fullDeck = new Deck();
+        Deck fullDeck = Deck.fullSortedDeck();
         Card card = Card.randomCard();
-        for (Rank rank : Rank.values()) {
-            for (Suit suit : Suit.values()) {
-                fullDeck.addCard(new Card(rank, suit));
-            }
-        }
+
         int index = fullDeck.linearSearch(card);
 
         assertNotEquals(-1, index);
