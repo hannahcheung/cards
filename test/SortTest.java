@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SortTest {
 
+    public static final int TEST_SIZE = 20;
     private Random random;
 
     @Before
@@ -27,7 +28,7 @@ public class SortTest {
         Deck deck = new Deck();
         deck.sort();
 
-        assertEquals(deck.getCards(), new ArrayList<>());
+        assertEquals(new ArrayList<>(), deck.getCards());
     }
 
     /**
@@ -43,7 +44,7 @@ public class SortTest {
         Deck sortedDeck = new Deck();
         sortedDeck.addCard(card);
 
-        assertEquals(deck.getCards(), sortedDeck.getCards());
+        assertEquals(sortedDeck.getCards(), deck.getCards());
     }
 
     /**
@@ -66,7 +67,7 @@ public class SortTest {
         deck.addCards(cards);
         deck.sort();
 
-        assertEquals(deck.getCards(), sortedDeck.getCards());
+        assertEquals(sortedDeck.getCards(), deck.getCards());
     }
 
     /**
@@ -78,31 +79,83 @@ public class SortTest {
         Deck deck = new Deck();
         Deck sortedDeck = new Deck();
         List<Card> cards = new ArrayList<>();
+        Suit randomSuit = Suit.values()[random.nextInt(Suit.values().length)];
+
         for (Rank rank : Rank.values()) {
-            cards.add(new Card(rank, Suit.HEARTS));
-            sortedDeck.addCard(new Card(rank, Suit.HEARTS));
+            cards.add(new Card(rank, randomSuit));
+            sortedDeck.addCard(new Card(rank, randomSuit));
         }
         Collections.shuffle(cards);
         deck.addCards(cards);
         deck.sort();
 
-        assertEquals(deck.getCards(), sortedDeck.getCards());
+        assertEquals(sortedDeck.getCards(), deck.getCards());
     }
 
     /**
-     * Asserts that sorting a full Deck
+     * Assert that when given a non-full unsorted Deck that
+     * consist of Cards with more than one rank and suit,
+     * the Deck is sorted properly.
      */
     @Test
-    public void fullDeckSortTest() {
-        Deck deck = new Deck(56);
-        Deck sortedDeck = new Deck();
-        for (Rank rank : Rank.values()) {
-            for (Suit suit : Suit.values()) {
-                sortedDeck.addCard(new Card(rank, suit));
-            }
+    public void unsortedDeckSortTest() {
+        Deck sortedDeck = Deck.fullSortedDeck();
+        List<Card> sortedCards = sortedDeck.getCards();
+
+        while (sortedCards.size() > TEST_SIZE) {
+            int randomIndex = random.nextInt(sortedCards.size());
+            sortedCards.remove(randomIndex);
         }
+
+        List<Card> unsortedCards = new ArrayList<>(sortedCards);
+        Collections.shuffle(unsortedCards);
+
+        Deck deck = new Deck();
+        deck.addCards(unsortedCards);
         deck.sort();
 
-        assertEquals(deck.getCards(), sortedDeck.getCards());
+        assertEquals(sortedCards, deck.getCards());
+    }
+
+    /**
+     * Assert that when given a sorted Deck that consist of
+     * Cards with more than one rank and suit, sorting the
+     * Deck results in the same Deck.
+     */
+    @Test
+    public void sortedDeckSortTest() {
+        Deck sortedDeck = Deck.fullSortedDeck();
+        Deck testDeck = Deck.fullSortedDeck();
+
+        testDeck.sort();
+
+        assertEquals(sortedDeck.getCards(), testDeck.getCards());
+    }
+
+    /**
+     * Asserts that sorting an unsorted full Deck
+     * results in all Cards first sorted by rank, then suit.
+     */
+    @Test
+    public void unsortedFullDeckSortTest() {
+        Deck deck = new Deck(56);
+        Deck sortedDeck = Deck.fullSortedDeck();
+
+        deck.sort();
+
+        assertEquals(sortedDeck.getCards(), deck.getCards());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void sortedFullDeckSortTest() {
+        Deck deck = Deck.fullSortedDeck();
+        Deck sortedDeck = Deck.fullSortedDeck();
+
+        deck.sort();
+
+        assertEquals(sortedDeck.getCards(), deck.getCards());
     }
 }

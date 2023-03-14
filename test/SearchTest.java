@@ -12,7 +12,7 @@ import static org.junit.Assert.assertNotEquals;
 public class SearchTest {
 
     public static final int FULL_DECK = 56;
-    public static final int ARBITRARY_SIZE = 20;
+    public static final int TEST_SIZE = 20;
     private Random random;
 
     @Before
@@ -89,7 +89,7 @@ public class SearchTest {
      */
     @Test
     public void unsortedDeckContainsBeginningSearchTest() {
-        Deck deck = new Deck(ARBITRARY_SIZE);
+        Deck deck = new Deck(TEST_SIZE);
         Card card = deck.getCards().get(0);
 
         int index = deck.linearSearch(card);
@@ -104,12 +104,12 @@ public class SearchTest {
      */
     @Test
     public void unsortedDeckContainsMiddleSearchTest() {
-        Deck deck = new Deck(ARBITRARY_SIZE);
-        Card card = deck.getCards().get(ARBITRARY_SIZE / 2);
+        Deck deck = new Deck(TEST_SIZE);
+        Card card = deck.getCards().get(TEST_SIZE / 2);
 
         int index = deck.linearSearch(card);
 
-        assertEquals(ARBITRARY_SIZE / 2, index);
+        assertEquals(TEST_SIZE / 2, index);
     }
 
     /**
@@ -119,12 +119,12 @@ public class SearchTest {
      */
     @Test
     public void unsortedDeckContainsEndSearchTest() {
-        Deck deck = new Deck(ARBITRARY_SIZE);
-        Card card = deck.getCards().get(ARBITRARY_SIZE - 1);
+        Deck deck = new Deck(TEST_SIZE);
+        Card card = deck.getCards().get(TEST_SIZE - 1);
 
         int index = deck.linearSearch(card);
 
-        assertEquals(ARBITRARY_SIZE - 1, index);
+        assertEquals(TEST_SIZE - 1, index);
     }
 
     /**
@@ -133,7 +133,7 @@ public class SearchTest {
      */
     @Test
     public void unsortedDeckDoesNotContainSearchTest() {
-        Deck deck = new Deck(ARBITRARY_SIZE);
+        Deck deck = new Deck(TEST_SIZE);
         Card card = Card.randomCard();
         while (deck.getCards().contains(card)) {
             card = Card.randomCard();
@@ -153,7 +153,7 @@ public class SearchTest {
         Deck fullDeck = Deck.fullSortedDeck();
         List<Card> cards = fullDeck.getCards();
 
-        while (cards.size() > ARBITRARY_SIZE) {
+        while (cards.size() > TEST_SIZE) {
             int randomIndex = random.nextInt(cards.size());
             cards.remove(randomIndex);
         }
@@ -177,7 +177,7 @@ public class SearchTest {
         Deck fullDeck = Deck.fullSortedDeck();
         List<Card> cards = fullDeck.getCards();
 
-        while (cards.size() > ARBITRARY_SIZE) {
+        while (cards.size() > TEST_SIZE) {
             int randomIndex = random.nextInt(cards.size());
             cards.remove(randomIndex);
         }
@@ -185,10 +185,10 @@ public class SearchTest {
         Deck searchDeck = new Deck();
         searchDeck.addCards(cards);
 
-        Card card = searchDeck.getCards().get(ARBITRARY_SIZE / 2);
+        Card card = searchDeck.getCards().get(TEST_SIZE / 2);
         int index = searchDeck.linearSearch(card);
 
-        assertEquals(ARBITRARY_SIZE / 2, index);
+        assertEquals(TEST_SIZE / 2, index);
     }
 
     /**
@@ -201,7 +201,7 @@ public class SearchTest {
         Deck fullDeck = Deck.fullSortedDeck();
         List<Card> cards = fullDeck.getCards();
 
-        while (cards.size() > ARBITRARY_SIZE) {
+        while (cards.size() > TEST_SIZE) {
             int randomIndex = random.nextInt(cards.size());
             cards.remove(randomIndex);
         }
@@ -209,10 +209,10 @@ public class SearchTest {
         Deck searchDeck = new Deck();
         searchDeck.addCards(cards);
 
-        Card card = searchDeck.getCards().get(ARBITRARY_SIZE - 1);
+        Card card = searchDeck.getCards().get(TEST_SIZE - 1);
         int index = searchDeck.linearSearch(card);
 
-        assertEquals(ARBITRARY_SIZE - 1, index);
+        assertEquals(TEST_SIZE - 1, index);
     }
     /**
      * Assert that searching for a Card that does not appear in
@@ -223,7 +223,7 @@ public class SearchTest {
         Deck fullDeck = Deck.fullSortedDeck();
         List<Card> cards = fullDeck.getCards();
 
-        while (cards.size() > ARBITRARY_SIZE) {
+        while (cards.size() > TEST_SIZE) {
             int randomIndex = random.nextInt(cards.size());
             cards.remove(randomIndex);
         }
