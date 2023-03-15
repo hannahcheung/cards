@@ -14,7 +14,9 @@ public class Deck {
     }
 
     /**
-     * Constructs a Deck of Cards with a given number
+     * Constructs a Deck of Cards with a given number. Deck
+     * may consist of any combination of unique Cards in
+     * any order.
      * @param numCards - given number of cards in new Deck
      * @precondition 0 <= numCards <= 52
      */
@@ -81,43 +83,23 @@ public class Deck {
     }
 
     /**
-     * Searches for a given card in the Deck
+     * Performs linear search on cards in Deck
+     * @param target - Card to look for in Deck
+     * @return index of target Card if Card is found, -1 if not found
+     */
+    public int linearSearch(Card target) {
+        // TODO: Implement linear search
+        return -1;
+    }
+
+    /**
+     * Performs binary search on cards in Deck
      * @param target - Card to look for in Deck
      * @precondition Deck is sorted in ascending order
      * @return index of target Card if Card is found, -1 if not found
      */
     public int binarySearch(Card target) {
-        return binarySearch(target, 0, cards.size() - 1);
-    }
-
-    private int binarySearch(Card target, int low, int high) {
-        while (low <= high) {
-            // Avoids overflow
-            int mid = low + ((high - low) / 2);
-            Card curr = cards.get(mid);
-            if (target.equals(curr)) {
-                return mid;
-            } else if (target.compareTo(curr) > 0) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Performs linear search on cards in Deck.
-     * @param target - Card to look for in Deck
-     * @return index of target Card if Card is found, -1 if not found
-     */
-    public int linearSearch(Card target) {
-        for (int i = 0; i < cards.size(); i++) {
-            Card card = cards.get(i);
-            if (target.equals(card)) {
-                return i;
-            }
-        }
+        // BONUS: Implement binary search
         return -1;
     }
 
@@ -125,43 +107,14 @@ public class Deck {
      * Performs selection sort on the cards in the Deck
      */
     public void selectionSort() {
-        for (int i = 0; i < cards.size(); i++) {
-            // set minimum card to be the greatest value card initially
-            int minIndex = i;
-            Card minCard = cards.get(i);
-            for (int j = i + 1; j < cards.size(); j++) {
-                Card currCard = cards.get(j);
-                if (currCard.compareTo(minCard) < 0) {
-                    minIndex = j;
-                    minCard = currCard;
-                }
-            }
-            swap(i, minIndex);
-        }
+        // TODO: Implement selection sort
     }
 
     /**
      * Performs insertion sort on the cards in the Deck
      */
     public void insertionSort() {
-        for (int i = 0; i < cards.size(); i++) {
-            int j = i;
-            while (j > 0 && cards.get(j - 1).compareTo(cards.get(j)) > 0) {
-                swap(j, j -1);
-                j = j - 1;
-            }
-        }
-    }
-
-    /**
-     * Swaps two Cards in the cards list
-     * @param indexA index of first Card to be swapped
-     * @param indexB index of second card to bee swapped
-     */
-    private void swap(int indexA, int indexB) {
-        Card temp = cards.get(indexA);
-        cards.set(indexA, cards.get(indexB));
-        cards.set(indexB, temp);
+        // TODO: Implement insertion sort
     }
 
     /**
