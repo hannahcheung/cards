@@ -149,7 +149,8 @@ public class InsertionSortTest {
     }
 
     /**
-     *
+     * Asserts that sorting a sorted full Deck
+     * results in the same Deck contents.
      */
     @Test
     public void sortedFullDeckSortTest() {
