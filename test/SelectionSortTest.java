@@ -10,7 +10,7 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SortTest {
+public class SelectionSortTest {
 
     public static final int TEST_SIZE = 20;
     private Random random;
@@ -26,7 +26,7 @@ public class SortTest {
     @Test
     public void emptyDeckSortTest() {
         Deck deck = new Deck();
-        deck.sort();
+        deck.selectionSort();
 
         assertEquals(new ArrayList<>(), deck.getCards());
     }
@@ -43,6 +43,8 @@ public class SortTest {
 
         Deck sortedDeck = new Deck();
         sortedDeck.addCard(card);
+
+        deck.selectionSort();
 
         assertEquals(sortedDeck.getCards(), deck.getCards());
     }
@@ -65,7 +67,7 @@ public class SortTest {
 
         Collections.shuffle(cards);
         deck.addCards(cards);
-        deck.sort();
+        deck.selectionSort();
 
         assertEquals(sortedDeck.getCards(), deck.getCards());
     }
@@ -87,7 +89,7 @@ public class SortTest {
         }
         Collections.shuffle(cards);
         deck.addCards(cards);
-        deck.sort();
+        deck.selectionSort();
 
         assertEquals(sortedDeck.getCards(), deck.getCards());
     }
@@ -112,7 +114,7 @@ public class SortTest {
 
         Deck deck = new Deck();
         deck.addCards(unsortedCards);
-        deck.sort();
+        deck.selectionSort();
 
         assertEquals(sortedCards, deck.getCards());
     }
@@ -127,7 +129,7 @@ public class SortTest {
         Deck sortedDeck = Deck.fullSortedDeck();
         Deck testDeck = Deck.fullSortedDeck();
 
-        testDeck.sort();
+        testDeck.selectionSort();
 
         assertEquals(sortedDeck.getCards(), testDeck.getCards());
     }
@@ -141,7 +143,7 @@ public class SortTest {
         Deck deck = new Deck(56);
         Deck sortedDeck = Deck.fullSortedDeck();
 
-        deck.sort();
+        deck.selectionSort();
 
         assertEquals(sortedDeck.getCards(), deck.getCards());
     }
@@ -154,7 +156,7 @@ public class SortTest {
         Deck deck = Deck.fullSortedDeck();
         Deck sortedDeck = Deck.fullSortedDeck();
 
-        deck.sort();
+        deck.selectionSort();
 
         assertEquals(sortedDeck.getCards(), deck.getCards());
     }

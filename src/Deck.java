@@ -121,10 +121,6 @@ public class Deck {
         return -1;
     }
 
-    public void sort() {
-        selectionSort();
-    }
-
     /**
      * Performs selection sort on the cards in the Deck
      */
