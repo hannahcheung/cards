@@ -44,6 +44,9 @@ public class Card {
      * @return true if rank and suit of both Card objects are the same
      */
     public boolean equals(Object other) {
+        if (other.getClass() != Card.class) {
+            return false;
+        }
         Card otherCard = (Card) other;
         return rank.equals(otherCard.rank) && suit.equals(otherCard.suit);
     }
