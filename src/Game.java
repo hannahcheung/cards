@@ -4,17 +4,16 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class Game {
-    // maximum value of DECK_SIZE is 56
-    // Can change this value to be smaller
+    // Feel free to change this value. Maximum value of DECK_SIZE must be 56.
     public static final int DECK_SIZE = 5;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Deck deck = new Deck(DECK_SIZE);
 
-        System.out.println("Welcome to Alice in Borderland, Arisu.");
-        System.out.println("Deck: " + deck);
+        System.out.println("Welcome to Alice in Borderland.");
         System.out.println();
+        System.out.println("Deck: " + deck);
 
         int choice;
 
@@ -82,7 +81,7 @@ public class Game {
                 suit = Suit.valueOf(choice.toUpperCase());
                 break;
             } catch (IllegalArgumentException exception) {
-                System.out.println("Invalid suit choice. Please choose again: ");
+                System.out.print("Invalid suit choice. Please choose again: ");
                 choice = scanner.next();
             }
         }
